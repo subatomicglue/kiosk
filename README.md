@@ -14,4 +14,9 @@ npm start
 
 edit the playlist inside the .html
 
+## kiosk mode
+example method to run the app in chrome, in kiosk mode
+```
+chromium-browser --kiosk file:///home/pi/index.html
+```
 
