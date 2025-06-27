@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>MIDI Step Sequencer</title>
+</head>
+<body>
+  <h1>MIDI Step Sequencer</h1>
+  <label for="midiOutputs">Select MIDI Output:</label>
+  <select id="midiOutputs"></select>
+
+  <button onclick="sendNote()">Send Test Note</button>
+
+  <script>
+    let midiAccess;
+    let midiOutput;
+
+    navigator.requestMIDIAccess()
+      .then(onMIDISuccess)
+      .catch(err => console.error('MIDI init failed:', err));
+
+    function onMIDISuccess(midi) {
+      midiAccess = midi;
+      const outputSelect = document.getElementById("midiOutputs");
+
+      // Populate dropdown
+      for (const output of midi.outputs.values()) {
+        const option = document.createElement("option");
+        option.value = output.id;
+        option.text = output.name;
+        outputSelect.appendChild(option);
+      }
+
+      outputSelect.addEventListener("change", (event) => {
+        const selectedId = event.target.value;
+        midiOutput = midiAccess.outputs.get(selectedId);
+        console.log("Selected output:", midiOutput.name);
+      });
+
+      // Select first output by default
+      const firstId = outputSelect.options[0]?.value;
+      if (firstId) {
+        outputSelect.value = firstId;
+        midiOutput = midiAccess.outputs.get(firstId);
+      }
+    }
+
+    function sendNote() {
+      if (!midiOutput) {
+        alert("No MIDI output selected!");
+        return;
+      }
+
+      const NOTE_ON = 0x90;
+      const NOTE_OFF = 0x80;
+      const middleC = 60;
+      const velocity = 0x7f;
+
+      midiOutput.send([NOTE_ON, middleC, velocity]);
+      setTimeout(() => midiOutput.send([NOTE_OFF, middleC, 0x00]), 300);
+    }
+  </script>
+</body>
+</html>
+
