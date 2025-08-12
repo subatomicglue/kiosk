@@ -1,15 +1,32 @@
 {
-  "name": "kiosk",
+  "name": "suba-html-components",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "subatomic html components",
   "scripts": {
+    "build": "npm run build-subaplayer; npm run build-subamidi",
+    "build-subaplayer": "cat node_modules/jsmediatags/dist/jsmediatags.min.js > dist/jsmediatags.min.js && for f in src/suba-player.js; do echo \"(function(){\"; cat \"$f\"; echo \"})();\"; done > dist/suba-player.js && cp src/style-local.css src/*.ttf dist/ && npm run minify-subaplayer",
+    "minify-subaplayer": "npx terser src/suba-player.js --compress --mangle --output dist/suba-player.min.js",
+    "build-subamidi": "for f in src/int-box.js src/led-indicator.js src/track-lane.js src/step-control.js; do echo \"(function(){\"; cat \"$f\"; echo \"})();\"; done > dist/suba-midi.js && npm run minify-subamidi",
+    "minify-subamidi": "npx terser dist/suba-midi.js --compress --mangle --output dist/suba-midi.min.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "http-server"
   },
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "main": "dist/suba-player.js",
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "javascript",
+    "browser",
+    "html-components"
+  ],
+  "author": "subatomic",
+  "license": "MIT",
   "dependencies": {
-    "http-server": "^14.1.1"
+    "http-server": "^14.1.1",
+    "jsmediatags": "^3.9.7"
   }
 }

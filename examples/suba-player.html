@@ -2,7 +2,6 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="/favicons/favicon.ico"/>                                    <!-- also copy to root / folder -->
     <link rel="icon" type="image/png" href="/favicons/favicon-1024x1024.png" sizes="1024x1024" /> <!-- non-standard -->
     <link rel="icon" type="image/png" href="/favicons/favicon-512x512.png" sizes="512x512" /> <!-- non-standard -->
@@ -33,7 +32,10 @@
     <meta name="msapplication-square150x150logo" content="/favicons/mstile-150x150.png" />
     <meta name="msapplication-wide310x150logo" content="/favicons/mstile-310x150.png" />
     <meta name="msapplication-square310x310logo" content="/favicons/mstile-310x310.png" />
-    <script type="module" src="suba-player.js"></script>
+
+    <link rel="stylesheet" href="../dist/style-local.css">
+    <script src="../dist/jsmediatags.min.js"></script>
+    <script type="module" src="../dist/suba-player.js"></script>
   </head>
   <body style="margin: 0; display: flex; flex-direction: column; height: 100vh;">
     <div id="content" style="flex: 1; overflow-y: auto;">

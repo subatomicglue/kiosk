@@ -1,8 +1,9 @@
+(function(){
 const globalStyles = new CSSStyleSheet();
 globalStyles.replaceSync(`
   @font-face {
     font-family: 'Material Icons';
-    src: url('assets/MaterialSymbolsRounded-Regular.ttf') format('truetype');
+    src: url('./MaterialSymbolsRounded-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
   }
@@ -27,7 +28,6 @@ globalStyles.replaceSync(`
     font-weight: 700;
   }
 `);
-
 
 // jukebox-player.js
 class JukeboxPlayer {
@@ -73,7 +73,9 @@ class JukeboxPlayer {
     if (!track.src) return track; // Skip if no source available
 
     try {
-      const jsmediatags = await import("https://cdn.jsdelivr.net/npm/jsmediatags@3.9.5/dist/jsmediatags.min.js");
+      //const jsmediatags = await import("https://cdn.jsdelivr.net/npm/jsmediatags@3.9.5/dist/jsmediatags.min.js");
+      //const jsmediatags = await import("./jsmediatags.min.js");
+      const jsmediatags = window.jsmediatags;
       return new Promise((resolve) => {
         jsmediatags.read(track.src, {
           onSuccess: (tag) => {
@@ -455,3 +457,4 @@ customElements.define("now-playing", class extends HTMLElement {
 //const jukebox = JukeboxPlayer.getInstance();
 //jukebox.setPlaylist([{ title: "X", src: "..." }]);
 
+})();
