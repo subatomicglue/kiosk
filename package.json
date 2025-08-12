@@ -9,7 +9,9 @@
     "build-subamidi": "for f in src/int-box.js src/led-indicator.js src/track-lane.js src/step-control.js; do echo \"(function(){\"; cat \"$f\"; echo \"})();\"; done > dist/suba-midi.js && npm run minify-subamidi",
     "minify-subamidi": "npx terser dist/suba-midi.js --compress --mangle --output dist/suba-midi.min.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "http-server"
+    "serve": "http-server",
+    "build:watch": "nodemon --watch src --watch examples --exec \"npm run build\"",
+    "start": "concurrently --kill-others-on-fail \"npm run build:watch\" \"npm run serve\""
   },
   "main": "dist/suba-player.js",
   "files": [
@@ -28,5 +30,12 @@
   "dependencies": {
     "http-server": "^14.1.1",
     "jsmediatags": "^3.9.7"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.0",
+    "nodemon": "^3.1.10"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
