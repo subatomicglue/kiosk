@@ -77,7 +77,7 @@ class JukeboxPlayer {
       //const jsmediatags = await import("./jsmediatags.min.js");
       const jsmediatags = window.jsmediatags;
       return new Promise((resolve) => {
-        jsmediatags.read(track.src, {
+        jsmediatags.read(new URL(track.src, window.location.href).href, {
           onSuccess: (tag) => {
             const { artist, album, title } = tag.tags;
             resolve({ ...track, artist: artist || "Unknown Artist", album: album || "Unknown Album", title: title || track.title });
@@ -269,20 +269,24 @@ customElements.define("song-item", class extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-
-    const title = this.getAttribute("title");
-    const src = this.getAttribute("src");
-
     this.shadowRoot.adoptedStyleSheets = [globalStyles];
-    this.shadowRoot.innerHTML = `
-      <div><playpause-button title="${title}" src="${src}"></playpause-button><span class="title bold" style="cursor: pointer">${title}</span></div>
-    `;
-
-    this.shadowRoot.querySelector(".title").addEventListener("click", () => {
-      const parent = this.closest("song-grouper");
-      if (parent) parent.playSong(this);
-    });
     JukeboxPlayer.getInstance().on("track-changed", track => this.updateTrack(track));
+  }
+
+  static get observedAttributes() {
+    return ["title", "src"];
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (this.getAttribute("title") != "" && this.getAttribute("src") != "") {
+      this.shadowRoot.innerHTML = `
+        <div><playpause-button title="${this.getAttribute("title")}" src="${this.getAttribute("src")}"></playpause-button><span class="title bold" style="cursor: pointer">${this.getAttribute("title")}</span></div>
+      `;
+      this.shadowRoot.querySelector(".title").addEventListener("click", () => {
+        if (this.closest("song-grouper"))
+          this.closest("song-grouper").playSong(this);
+      });
+    }
   }
 
   getSongData() {
@@ -313,7 +317,6 @@ customElements.define("song-grouper", class extends HTMLElement {
   }
 
   connectedCallback() {
-    this.songs = Array.from(this.querySelectorAll("song-item"));
     let active = this.getAttribute("active") === "true"
     if (active) {
       setTimeout( () => {
@@ -331,13 +334,15 @@ customElements.define("song-grouper", class extends HTMLElement {
   }
 
   setPlaylist() {
-    const data = this.songs.map(el => el.getSongData());
+    let songs = Array.from(this.querySelectorAll("song-item"));
+    const data = songs.map(el => el.getSongData());
     JukeboxPlayer.getInstance().setPlaylist(data);
   }
 
   playSong(songEl) {
-    const data = this.songs.map(el => el.getSongData());
-    const index = this.songs.indexOf(songEl);
+    let songs = Array.from(this.querySelectorAll("song-item"));
+    const data = songs.map(el => el.getSongData());
+    const index = songs.indexOf(songEl);
     JukeboxPlayer.getInstance().playPlaylist(data, index);
   }
 });

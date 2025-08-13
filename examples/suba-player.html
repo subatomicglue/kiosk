@@ -38,34 +38,65 @@
     <script type="module" src="../dist/suba-player.js"></script>
   </head>
   <body style="margin: 0; display: flex; flex-direction: column; height: 100vh;">
+    <button onclick="init_web()">switch to web-hosted audio files</button>
+    <button onclick="init_local()">switch to local-hosted audio files</button>
     <div id="content" style="flex: 1; overflow-y: auto;">
       <song-grouper active="true">
-        <song-item title="01 - start" src="https://www.subatomicglue.com/download/music/spinningtrees-m4a/subatomicglue%20-%20spinningtrees%20-%2001%20-%20start.m4a"                               art="https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg"></song-item>
-        <song-item title="02 - asdfjlk" src="https://www.subatomicglue.com/download/music/spinningtrees-m4a/subatomicglue%20-%20spinningtrees%20-%2002%20-%20asdfjlk.m4a"                             art="https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg"></song-item>
-        <song-item title="03 - violentlydreaming" src="https://www.subatomicglue.com/download/music/spinningtrees-m4a/subatomicglue%20-%20spinningtrees%20-%2003 - violentlydreaming.m4a"                   art="https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg"></song-item>
-        <song-item title="04 - fruitjam" src="https://www.subatomicglue.com/download/music/spinningtrees-m4a/subatomicglue%20-%20spinningtrees%20-%2004 - fruitjam.m4a"                            art="https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg"></song-item>
-        <song-item title="05 - nothing" src="https://www.subatomicglue.com/download/music/spinningtrees-m4a/subatomicglue%20-%20spinningtrees%20-%2005 - nothing.m4a"                             art="https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg"></song-item>
-        <song-item title="06 - fur" src="https://www.subatomicglue.com/download/music/spinningtrees-m4a/subatomicglue%20-%20spinningtrees%20-%2006 - fur.m4a"                                 art="https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg"></song-item>
-        <song-item title="07 - speedbase" src="https://www.subatomicglue.com/download/music/spinningtrees-m4a/subatomicglue%20-%20spinningtrees%20-%2007 - speedbase (subatomic remix).m4a"         art="https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg"></song-item>
-        <song-item title="08 - war" src="https://www.subatomicglue.com/download/music/spinningtrees-m4a/subatomicglue%20-%20spinningtrees%20-%2008 - war.fist.m4a"                            art="https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg"></song-item>
-        <song-item title="09 - chilledbroccoli" src="https://www.subatomicglue.com/download/music/spinningtrees-m4a/subatomicglue%20-%20spinningtrees%20-%2009 - chilledbroccoli.m4a"                     art="https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg"></song-item>
-        <song-item title="10 - juno" src="https://www.subatomicglue.com/download/music/spinningtrees-m4a/subatomicglue%20-%20spinningtrees%20-%2010 - juno.m4a"                                art="https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg"></song-item>
-        <song-item title="11 - reversecowbell" src="https://www.subatomicglue.com/download/music/spinningtrees-m4a/subatomicglue%20-%20spinningtrees%20-%2011 - reversecowbell.m4a"                      art="https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg"></song-item>
-        <song-item title="12 - offaxis" src="https://www.subatomicglue.com/download/music/spinningtrees-m4a/subatomicglue%20-%20spinningtrees%20-%2012 - offaxis.m4a"                             art="https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg"></song-item>
-        <song-item title="13 - rotorbaum" src="https://www.subatomicglue.com/download/music/spinningtrees-m4a/subatomicglue%20-%20spinningtrees%20-%2013 - rotorbaum.m4a"                           art="https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg"></song-item>
-        <song-item title="14 - bright" src="https://www.subatomicglue.com/download/music/spinningtrees-m4a/subatomicglue%20-%20spinningtrees%20-%2014 - bright.m4a"                              art="https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg"></song-item>
-        <song-item title="15 - disastrous" src="https://www.subatomicglue.com/download/music/spinningtrees-m4a/subatomicglue%20-%20spinningtrees%20-%2015 - disastrous rise of misplaced power.m4a"  art="https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg"></song-item>
-        <song-item title="16 - abject" src="https://www.subatomicglue.com/download/music/spinningtrees-m4a/subatomicglue%20-%20spinningtrees%20-%2016 - abject worship of authority.m4a"         art="https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg"></song-item>
-        <song-item title="17 - deignwish" src="https://www.subatomicglue.com/download/music/spinningtrees-m4a/subatomicglue%20-%20spinningtrees%20-%2017 - deignwish.m4a"                           art="https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg"></song-item>
-        <song-item title="18 - mypanties" src="https://www.subatomicglue.com/download/music/spinningtrees-m4a/subatomicglue%20-%20spinningtrees%20-%2018 - mypanties get hotter.m4a"                art="https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg"></song-item>
-        <song-item title="19 - heavyelement" src="https://www.subatomicglue.com/download/music/spinningtrees-m4a/subatomicglue%20-%20spinningtrees%20-%2019 - heavyelement.m4a"                        art="https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg"></song-item>
-        <song-item title="20 - styrofone" src="https://www.subatomicglue.com/download/music/spinningtrees-m4a/subatomicglue%20-%20spinningtrees%20-%2020 - styrofone.m4a"                           art="https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg"></song-item>
-        <song-item title="21 - funk" src="https://www.subatomicglue.com/download/music/spinningtrees-m4a/subatomicglue%20-%20spinningtrees%20-%2021 - funk.m4a"                                art="https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg"></song-item>
+        <song-item title="01 - start" src="https://www.subatomicglue.com/download/music/spinningtrees-m4a/subatomicglue%20-%20spinningtrees%20-%2001%20-%20start.m4a" art="https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg"></song-item>
       </song-grouper>
     </div>
     <div id="footer" style="width: 100%; margin: 0; padding 0; background-color: #f0f0f0;">
       <now-playing></now-playing>
     </div>
+
+    <!-- recreate the song list with local or web audio files (button selector) -->
+    <script>
+      function init( local = false ) {
+        const prefix_web = "https://www.subatomicglue.com/download/music/spinningtrees-m4a/"
+        const prefix_local = "../spinning/"
+        const prefix = local ? prefix_local : prefix_web;
+        const songs = [
+          { "title": "01 - start", "src": `${prefix}subatomicglue%20-%20spinningtrees%20-%2001%20-%20start.m4a`, "art": "https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg" },
+          { "title": "02 - asdfjlk", "src": `${prefix}subatomicglue%20-%20spinningtrees%20-%2002%20-%20asdfjlk.m4a`, "art": "https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg" },
+          { "title": "03 - violentlydreaming", "src": `${prefix}subatomicglue%20-%20spinningtrees%20-%2003 - violentlydreaming.m4a`, "art": "https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg" },
+          { "title": "04 - fruitjam", "src": `${prefix}subatomicglue%20-%20spinningtrees%20-%2004 - fruitjam.m4a`, "art": "https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg" },
+          { "title": "05 - nothing", "src": `${prefix}subatomicglue%20-%20spinningtrees%20-%2005 - nothing.m4a`, "art": "https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg" },
+          { "title": "06 - fur", "src": `${prefix}subatomicglue%20-%20spinningtrees%20-%2006 - fur.m4a`, "art": "https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg" },
+          { "title": "07 - speedbase", "src": `${prefix}subatomicglue%20-%20spinningtrees%20-%2007 - speedbase (subatomic remix).m4a`, "art": "https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg" },
+          { "title": "08 - war", "src": `${prefix}subatomicglue%20-%20spinningtrees%20-%2008 - war.fist.m4a`, "art": "https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg" },
+          { "title": "09 - chilledbroccoli", "src": `${prefix}subatomicglue%20-%20spinningtrees%20-%2009 - chilledbroccoli.m4a`, "art": "https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg" },
+          { "title": "10 - juno", "src": `${prefix}subatomicglue%20-%20spinningtrees%20-%2010 - juno.m4a`, "art": "https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg" },
+          { "title": "11 - reversecowbell", "src": `${prefix}subatomicglue%20-%20spinningtrees%20-%2011 - reversecowbell.m4a`, "art": "https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg" },
+          { "title": "12 - offaxis", "src": `${prefix}subatomicglue%20-%20spinningtrees%20-%2012 - offaxis.m4a`, "art": "https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg" },
+          { "title": "13 - rotorbaum", "src": `${prefix}subatomicglue%20-%20spinningtrees%20-%2013 - rotorbaum.m4a`, "art": "https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg" },
+          { "title": "14 - bright", "src": `${prefix}subatomicglue%20-%20spinningtrees%20-%2014 - bright.m4a`, "art": "https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg" },
+          { "title": "15 - disastrous", "src": `${prefix}subatomicglue%20-%20spinningtrees%20-%2015 - disastrous rise of misplaced power.m4a`, "art": "https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg" },
+          { "title": "16 - abject", "src": `${prefix}subatomicglue%20-%20spinningtrees%20-%2016 - abject worship of authority.m4a`, "art": "https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg" },
+          { "title": "17 - deignwish", "src": `${prefix}subatomicglue%20-%20spinningtrees%20-%2017 - deignwish.m4a`, "art": "https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg" },
+          { "title": "18 - mypanties", "src": `${prefix}subatomicglue%20-%20spinningtrees%20-%2018 - mypanties get hotter.m4a`, "art": "https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg" },
+          { "title": "19 - heavyelement", "src": `${prefix}subatomicglue%20-%20spinningtrees%20-%2019 - heavyelement.m4a`, "art": "https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg" },
+          { "title": "20 - styrofone", "src": `${prefix}subatomicglue%20-%20spinningtrees%20-%2020 - styrofone.m4a`, "art": "https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg" },
+          { "title": "21 - funk", "src": `${prefix}subatomicglue%20-%20spinningtrees%20-%2021 - funk.m4a`, "art": "https://www.subatomicglue.com/images/subatomicglue-spinningtrees-sq-500.jpg" },
+        ];
+        // clean up previous
+        document.querySelector('#content').innerHTML = ""; // clear it.
+        // create the song-grouper
+        let song_grouper = document.createElement("song-grouper")
+        song_grouper.setAttribute("active", true);
+        document.querySelector('#content').appendChild( song_grouper )
+        // populate it with song-items
+        songs.forEach(song => {
+          const el = document.createElement("song-item");
+          el.setAttribute("title", song.title + (local ? " (local)" : ''));
+          el.setAttribute("src", song.src);
+          el.setAttribute("art", song.art);
+          song_grouper.appendChild(el); // append to body or some container
+        });
+      }
+      function init_web() { init( false ); }
+      function init_local() { init( true ); }
+      init_web();
+    </script>
   </body>
 </html>
 
