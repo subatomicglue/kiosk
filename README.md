@@ -1,7 +1,8 @@
 # media kiosk
 
  - **Audio Player** - index.html - a demo showing a plex-like or spotify-like playlist with playlist and now-playing controls all acting on a central JukeBoxPlayer
- - **Mantis Seq** - midi.html - a demo showing midi sequencing in the browser, for controllking softsynth or external midigear.   [try it](https://htmlpreview.github.io/?https://raw.githubusercontent.com/subatomicglue/kiosk/master/examples/midi.html) (NOTE: requires a working midi device on your local system)
+ - **Mantis Seq** - midi.html - a demo showing midi sequencing in the browser, for controllking softsynth or external midigear.   
+   - [try it](https://htmlpreview.github.io/?https://raw.githubusercontent.com/subatomicglue/kiosk/master/examples/midi.html) (REQUIRES! a midi device on your system, select it from the dropdown)
 
 ## Audio Player - try it
 install a simple http server and run it...
