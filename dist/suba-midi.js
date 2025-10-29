@@ -422,6 +422,8 @@ class TrackLane extends HTMLElement {
     }
   }
   mute() {
+    this.highlightStep(-1); // clear highlights when muted
+
     this.isMuted = true;
     //this.resetMidi();
     stopActiveNote()
@@ -431,7 +433,7 @@ class TrackLane extends HTMLElement {
   }
 
   resetMidi() {
-    this.highlightStep(-1); // assume resetMidi is only happening on stop
+    this.highlightStep(-1); // clear highlights on reset of midi
 
     if (this.midiAccess)
       for (let ch = 0; ch < 16; ch++) {
