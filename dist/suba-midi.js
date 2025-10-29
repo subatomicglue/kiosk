@@ -197,6 +197,11 @@ class TrackLane extends HTMLElement {
         .edit-grid { display: flex; gap: 4px; margin-top: 4px; }
         .vel-grid { display: flex; gap: 4px; margin-top: 4px; }
         .slur-grid { display: flex; gap: 4px; margin-top: 4px; }
+        .active-step {
+          outline: 2px solid gold;
+          box-shadow: 0 0 8px gold;
+          border-radius: 4px;
+        }
       </style>
       <div>
         <label>MIDI Out:
@@ -357,6 +362,9 @@ class TrackLane extends HTMLElement {
   playStep() {
     if (this.isMuted == true) return;
 
+    // highlight the current step
+    this.highlightStep(this.currentStep);
+
     const step = this.steps[this.currentStep];
     const out = this.getMidiOutput();
     if (!out || !step) {
@@ -423,6 +431,8 @@ class TrackLane extends HTMLElement {
   }
 
   resetMidi() {
+    this.highlightStep(-1); // assume resetMidi is only happening on stop
+
     if (this.midiAccess)
       for (let ch = 0; ch < 16; ch++) {
         this.midiAccess.outputs.forEach(out => {
@@ -470,6 +480,13 @@ class TrackLane extends HTMLElement {
     });
     console.log( this.channel, "pr" , this.program )
     this.updateEditGrid();
+  }
+
+  highlightStep(index) {
+    this.steps.forEach((s, i) => {
+      if (i === index) s.ref.classList.add("active-step");
+      else s.ref.classList.remove("active-step");
+    });
   }
 }
 
